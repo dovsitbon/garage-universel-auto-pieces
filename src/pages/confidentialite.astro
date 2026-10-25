@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Politique de confidentialité | Garage Universel Auto Pièces"
+  description="Données collectées par les formulaires de demande de pièce et d’enlèvement de véhicule de Garage Universel Auto Pièces à Groslay, et vos droits."
+>
+  <PageHead plate="Registre" title="Politique de confidentialité" />
+  <div class="wrap legal max-w-[52rem] py-12">
+    <h2>Responsable du traitement</h2>
+    <p>{site.name}, {site.street}, {site.postalCode} {site.city}. Téléphone : <a class="link mono" href={site.phoneHref}>{site.phone}</a>.</p>
+
+    <h2>Données collectées</h2>
+    <p>
+      Uniquement ce que vous saisissez dans les formulaires : marque, modèle, année et motorisation du véhicule, pièce recherchée ou état du véhicule, code postal, numéro de téléphone et, si vous le donnez, votre nom.
+    </p>
+
+    <h2>Pourquoi</h2>
+    <p>Pour vous rappeler et répondre à votre demande, rien d'autre. Base légale : votre consentement, donné en cochant la case du formulaire.</p>
+
+    <h2>Transmission</h2>
+    <p>
+      Les formulaires sont transmis par le service Web3Forms, qui fait suivre le message par e-mail à la casse. Les données ne sont ni vendues ni utilisées pour de la publicité.
+    </p>
+
+    <h2>Durée de conservation</h2>
+    <p><span class="tbc">[À CONFIRMER]</span> (proposition : 12 mois après le dernier échange).</p>
+
+    <h2>Cookies et mesure d'audience</h2>
+    <p>
+      Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience. La carte Google n'est chargée que si vous cliquez sur « Afficher la carte Google » : Google peut alors déposer ses propres cookies.
+    </p>
+
+    <h2>Vos droits</h2>
+    <p>
+      Vous pouvez demander l'accès, la rectification ou la suppression de vos données en appelant le {site.phone} ou par courrier à l'adresse ci-dessus. Adresse e-mail de contact <span class="tbc">[À CONFIRMER]</span>. En cas de désaccord, vous pouvez saisir la CNIL (cnil.fr).
+    </p>
+  </div>
+</Base>

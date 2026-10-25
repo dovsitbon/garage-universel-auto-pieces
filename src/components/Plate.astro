@@ -1,0 +1,5 @@
+---
+interface Props { ref: string; label?: string; class?: string }
+const { ref, label, class: cls = '' } = Astro.props;
+---
+<span class={`plate ${cls}`} aria-hidden="true"><span>{ref}{label && ` ${label}`}</span></span>

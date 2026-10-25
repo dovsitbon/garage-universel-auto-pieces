@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Page introuvable | Garage Universel Auto Pièces" description="Cette page n’existe pas." noindex>
+  <div class="wrap py-16 md:py-24">
+    <Plate ref="Casier vide" />
+    <h1 class="mt-5 max-w-[20ch] text-4xl sm:text-5xl">Ce casier est vide</h1>
+    <p class="mt-4 max-w-[52ch]">L'adresse ne correspond à aucune page. Repartez d'une des deux entrées, ou appelez le <a class="link mono" href={site.phoneHref}>{site.phone}</a>.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="btn btn-ink" href="/pieces-auto-occasion/">Chercher une pièce</a>
+      <a class="btn btn-green" href="/enlevement-epave-vhu/">Épave et rachat</a>
+      <a class="btn btn-line" href="/">Accueil</a>
+    </div>
+  </div>
+</Base>

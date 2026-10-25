@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Mentions légales | Garage Universel Auto Pièces, Groslay"
+  description="Mentions légales du site de Garage Universel Auto Pièces, casse automobile et centre VHU au 8 route de Calais, 95410 Groslay."
+>
+  <PageHead plate="Registre" title="Mentions légales" />
+  <div class="wrap legal max-w-[52rem] py-12">
+    <h2>Éditeur du site</h2>
+    <p>
+      {site.name}<br />
+      {site.street}, {site.postalCode} {site.city}<br />
+      Téléphone : <a class="link mono" href={site.phoneHref}>{site.phone}</a><br />
+      Forme juridique : <span class="tbc">[À CONFIRMER]</span><br />
+      SIREN : <span class="mono">{site.siren}</span><br />
+      SIRET : <span class="tbc">[À CONFIRMER]</span><br />
+      Directeur de la publication : <span class="tbc">[À CONFIRMER]</span><br />
+      Agrément préfectoral centre VHU : <span class="tbc">{site.vhuAgrement}</span>
+    </p>
+
+    <h2>Hébergeur</h2>
+    <p>
+      Vercel Inc.<br />
+      440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
+      <a class="link" href="https://vercel.com" rel="noopener">vercel.com</a>
+    </p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>
+      Les textes, la mise en page et les éléments graphiques de ce site appartiennent à {site.name}, sauf mention contraire. Les extraits d'avis sont issus d'avis publics Google.
+    </p>
+
+    <h2>Données personnelles</h2>
+    <p>Voir la <a class="link" href="/confidentialite/">politique de confidentialité</a>.</p>
+  </div>
+</Base>

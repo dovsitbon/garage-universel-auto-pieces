@@ -1,0 +1,33 @@
+---
+import { site } from '../data/site';
+---
+<div class="map-facade relative aspect-[4/3] w-full border-2 border-steel bg-paper-2 md:aspect-[16/10]" data-map>
+  <svg class="absolute inset-0 h-full w-full" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="250" fill="#e6dbc7" />
+    <path d="M70 -10 L150 260" stroke="#ffffff" stroke-width="16" />
+    <path d="M70 -10 L150 260" stroke="#9aa7ae" stroke-width="1" stroke-dasharray="6 6" />
+    <path d="M-10 170 L410 120" stroke="#ffffff" stroke-width="7" />
+    <path d="M250 -10 L290 260" stroke="#ffffff" stroke-width="5" />
+    <circle cx="118" cy="150" r="9" fill="#c2461a" />
+    <circle cx="118" cy="150" r="3.5" fill="#efe7d8" />
+  </svg>
+  <div class="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 bg-paper/95 p-4">
+    <p class="text-sm"><span class="font-semibold">{site.street}</span>, {site.postalCode} {site.city}<br /><span class="text-steel">Plan schématique. La carte Google se charge au clic.</span></p>
+    <button type="button" class="btn btn-ink shrink-0" data-map-load>Afficher la carte Google</button>
+  </div>
+</div>
+<script>
+  import { site } from '../data/site';
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((box) => {
+    box.querySelector('[data-map-load]')?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = site.mapsEmbed;
+      f.title = `Carte : ${site.name}, ${site.street}, ${site.city}`;
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.className = 'absolute inset-0 h-full w-full border-0';
+      box.replaceChildren(f);
+      f.focus();
+    });
+  });
+</script>

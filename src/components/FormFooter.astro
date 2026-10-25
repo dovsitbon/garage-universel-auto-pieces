@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+interface Props { id: string; submit: string }
+const { id, submit } = Astro.props;
+---
+<div class="field sm:col-span-2">
+  <label class="choice" for={`${id}-rgpd`}>
+    <input type="checkbox" id={`${id}-rgpd`} name="consentement" value="oui" required aria-describedby={`${id}-rgpd-err`} data-check />
+    <span>J'accepte que mes coordonnées servent uniquement à me rappeler pour cette demande. <a class="link" href="/confidentialite/">Confidentialité</a></span>
+  </label>
+  <span class="error" id={`${id}-rgpd-err`} aria-live="polite"></span>
+</div>
+<input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+<div class="sm:col-span-2 flex flex-col gap-4 sm:flex-row sm:items-center">
+  <button type="submit" class="btn btn-green">{submit}</button>
+  <p class="text-sm text-steel">Réponse sous <span class="tbc">{site.responseDelay}</span>. Plus rapide : <a class="link mono" href={site.phoneHref}>{site.phone}</a></p>
+</div>
+<p data-form-status role="status" class="form-status sm:col-span-2"></p>

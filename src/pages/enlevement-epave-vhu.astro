@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import VehicleForm from '../components/VehicleForm.astro';
+import Aside from '../components/Aside.astro';
+import Plate from '../components/Plate.astro';
+import { site } from '../data/site';
+
+const steps = [
+  { t: 'Vous décrivez le véhicule', d: 'Par la fiche ci-dessous ou au téléphone : marque, modèle, état, roulant ou non, où il se trouve.' },
+  { t: 'On convient de la reprise', d: 'Vous l’amenez route de Calais, ou il est enlevé chez vous. Enlèvement à domicile et zone couverte : [À CONFIRMER].' },
+  { t: 'Vous remettez les papiers', d: 'Carte grise, pièce d’identité et documents listés plus bas. Les papiers sont faits sur place.' },
+  { t: 'Vous recevez le certificat de destruction', d: 'Délivré par le centre VHU agréé. La destruction est déclarée : le véhicule ne vous est plus imputable.' },
+];
+const docs = [
+  'Le certificat d’immatriculation (carte grise) du véhicule',
+  'Une pièce d’identité du titulaire de la carte grise',
+  'Un certificat de situation administrative (dit « de non-gage »)',
+  'Si vous n’êtes pas le titulaire : une procuration ou les justificatifs adaptés',
+];
+const tbcHtml = (s: string) => s.replace('[À CONFIRMER]', '<span class="tbc">[À CONFIRMER]</span>');
+---
+
+<Base
+  title="Enlèvement d’épave et rachat de voiture à Groslay (VHU)"
+  description="Épave, voiture en panne ou accidentée à Groslay : reprise par un centre VHU agréé, certificat de destruction remis, papiers faits sur place."
+>
+  <PageHead plate="Entrée véhicules" title="Enlèvement d'épave et rachat de véhicule" tone="green">
+    <p>
+      Voiture accidentée, en panne, trop vieille ou simplement de trop : un centre VHU agréé la reprend, la dépollue, la démonte, et vous remet le certificat de destruction.
+    </p>
+  </PageHead>
+
+  <section class="wrap py-12" aria-labelledby="etapes">
+    <h2 id="etapes" class="text-2xl sm:text-3xl">En quatre étapes</h2>
+    <ol class="steps mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((s, i) => (
+          <li>
+            <span class="mono step-n">{i + 1}</span>
+            <p class="font-semibold">{s.t}</p>
+            <p class="mt-1 text-[0.98rem]" set:html={tbcHtml(s.d)} />
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="border-y-2 border-steel bg-kraft text-green-deep" aria-labelledby="docs">
+    <div class="wrap grid gap-10 py-12 md:grid-cols-2">
+      <div>
+        <Plate ref="Dossier" label="documents" />
+        <h2 id="docs" class="mt-5 text-2xl sm:text-3xl">Documents à prévoir</h2>
+        <p class="mt-2">
+          Liste indicative <span class="tbc">[À CONFIRMER]</span> : appelez avant de venir si vous avez un doute, notamment si la carte grise est perdue.
+        </p>
+        <ul class="mt-5 space-y-3">
+          {
+            docs.map((d) => (
+              <li class="flex gap-3">
+                <span class="mt-[0.6rem] h-2 w-2 flex-none bg-green-deep" aria-hidden="true" />
+                <span>{d}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-2xl sm:text-3xl">Le certificat de destruction</h2>
+        <p class="mt-3">
+          Seul un centre VHU agréé par la préfecture peut le délivrer. Il prouve que le véhicule a été pris en charge pour être détruit et met fin à votre responsabilité de propriétaire. Gardez-le.
+        </p>
+        <dl class="mt-5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+          <dt class="font-semibold">Agrément VHU</dt>
+          <dd><span class="tbc">{site.vhuAgrement}</span></dd>
+          <dt class="font-semibold">SIREN</dt>
+          <dd class="mono">{site.siren}</dd>
+        </dl>
+        <p class="mt-5">
+          Rachat : selon le véhicule, une somme peut vous être versée. Elle vous est annoncée après description ou passage sur place. Barème <span class="tbc">[À CONFIRMER]</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap grid gap-10 py-12 lg:grid-cols-[1fr_20rem]">
+    <section aria-labelledby="fiche">
+      <h2 id="fiche" class="text-2xl sm:text-3xl">Décrire mon véhicule</h2>
+      <p class="mt-2 mb-6 text-steel">On vous rappelle pour convenir de la reprise. Les champs sans mention « facultatif » sont nécessaires.</p>
+      <VehicleForm />
+    </section>
+    <Aside />
+  </div>
+</Base>
+
+<script>
+  import { initForms } from '../scripts/forms';
+  initForms();
+</script>

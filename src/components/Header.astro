@@ -1,0 +1,60 @@
+---
+import Logo from './Logo.astro';
+import Status from './Status.astro';
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/pieces-auto-occasion/', label: 'Chercher une pièce' },
+  { href: '/enlevement-epave-vhu/', label: 'Épave et rachat' },
+  { href: '/acces-horaires/', label: 'Accès et horaires' },
+  { href: '/faq/', label: 'Questions' },
+];
+---
+<header class="border-b-2 border-steel bg-paper">
+  <div class="on-dark bg-green-deep text-paper text-sm">
+    <div class="wrap flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2">
+      <Status />
+      <p class="hidden sm:block">
+        <span>{site.street}, {site.postalCode} {site.city}</span>
+        <a class="mono ml-4 underline underline-offset-2" href={site.phoneHref}>{site.phone}</a>
+      </p>
+    </div>
+  </div>
+  <div class="wrap flex items-center justify-between gap-4 py-3">
+    <a href="/" class="flex items-center gap-3 no-underline min-h-[44px]" aria-label={`${site.name}, accueil`}>
+      <Logo class="h-10 w-10 flex-none" />
+      <span class="leading-tight" translate="no">
+        <span class="block font-semibold text-[1.05rem]">Garage Universel</span>
+        <span class="mono block text-[0.8rem] text-steel">Auto Pièces, Groslay</span>
+      </span>
+    </a>
+    <nav aria-label="Navigation principale" class="hidden lg:block">
+      <ul class="flex items-center gap-1">
+        {nav.map((n) => (
+          <li>
+            <a
+              href={n.href}
+              class={`inline-flex min-h-[44px] items-center px-3 font-semibold no-underline hover:text-green ${path.startsWith(n.href) ? 'text-green underline underline-offset-[6px] decoration-2' : ''}`}
+              aria-current={path.startsWith(n.href) ? 'page' : undefined}
+            >{n.label}</a>
+          </li>
+        ))}
+        <li><a href={site.phoneHref} class="btn btn-green ml-2 mono">{site.phone}</a></li>
+      </ul>
+    </nav>
+    <details class="lg:hidden relative group">
+      <summary class="list-none cursor-pointer inline-flex min-h-[44px] items-center gap-2 border-2 border-steel px-3 font-semibold [&::-webkit-details-marker]:hidden">
+        Menu
+        <svg width="14" height="10" viewBox="0 0 14 10" aria-hidden="true"><path d="M0 1h14M0 5h14M0 9h14" stroke="currentColor" stroke-width="2"/></svg>
+      </summary>
+      <nav aria-label="Navigation mobile" class="absolute right-0 top-[calc(100%+8px)] z-40 w-64 border-2 border-steel bg-paper">
+        <ul>
+          <li><a href="/" class="flex min-h-[48px] items-center px-4 font-semibold no-underline border-b border-steel/40">Accueil</a></li>
+          {nav.map((n) => (
+            <li><a href={n.href} class="flex min-h-[48px] items-center px-4 font-semibold no-underline border-b border-steel/40" aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

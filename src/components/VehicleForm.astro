@@ -1,0 +1,24 @@
+---
+import Field from './Field.astro';
+import FormFooter from './FormFooter.astro';
+const p = 'vhu';
+---
+<form data-lead data-success="Demande envoyée. On vous rappelle pour l'enlèvement ou la reprise." class="grid gap-x-5 gap-y-5 sm:grid-cols-2" novalidate>
+  <input type="hidden" name="subject" value="Épave / rachat de véhicule : site Garage Universel" />
+  <input type="hidden" name="type_demande" value="Épave ou rachat" />
+  <Field id={`${p}-marque`} name="marque" label="Marque" required />
+  <Field id={`${p}-modele`} name="modele" label="Modèle" required />
+  <Field id={`${p}-etat`} name="etat" label="État du véhicule" required options={['Accidenté', 'Panne moteur ou boîte', 'Hors d’usage, ancien', 'En état mais je n’en veux plus', 'Autre']} />
+  <fieldset class="field">
+    <legend>Le véhicule roule-t-il ?</legend>
+    <div class="flex gap-6">
+      <label class="choice"><input type="radio" name="roulant" value="oui" required data-check id={`${p}-roulant`} aria-describedby={`${p}-roulant-err`} /> Oui</label>
+      <label class="choice"><input type="radio" name="roulant" value="non" required /> Non</label>
+    </div>
+    <span class="error" id={`${p}-roulant-err`} aria-live="polite"></span>
+  </fieldset>
+  <Field id={`${p}-cp`} name="code_postal" label="Code postal où se trouve le véhicule" required inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" />
+  <Field id={`${p}-tel`} name="telephone" label="Téléphone" type="tel" required autocomplete="tel" inputmode="tel" pattern="(\+33|0)[\s.\-]?[1-9]([\s.\-]?[0-9]{2}){4}" />
+  <Field id={`${p}-msg`} name="precisions" label="Précisions" class="sm:col-span-2" hint="Kilométrage, clés, carte grise à votre nom, accès (parking, garage)…" textarea />
+  <FormFooter id={p} submit="Envoyer ma demande" />
+</form>

@@ -1,0 +1,11 @@
+---
+import { site } from '../data/site';
+---
+<div class="on-dark fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 border-t-2 border-green-deep bg-green-deep md:hidden" style="padding-bottom: env(safe-area-inset-bottom)">
+  <a href={site.phoneHref} class="flex min-h-[60px] flex-col items-center justify-center bg-safety px-2 text-center font-semibold text-white no-underline">
+    <span>Appeler</span><span class="mono text-[0.8rem]">{site.phone}</span>
+  </a>
+  <a href={site.mapsUrl} class="flex min-h-[60px] flex-col items-center justify-center px-2 text-center font-semibold text-paper no-underline" rel="noopener" target="_blank">
+    <span>Itinéraire</span><span class="mono text-[0.8rem]">route de Calais</span>
+  </a>
+</div>

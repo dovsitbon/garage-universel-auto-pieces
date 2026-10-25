@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://garage-universel-auto-pieces.vercel.app/sitemap-index.xml

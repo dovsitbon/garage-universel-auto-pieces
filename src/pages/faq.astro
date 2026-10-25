@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { faq, site } from '../data/site';
+
+const tbcHtml = (s: string) => s.replaceAll('[À CONFIRMER]', '<span class="tbc">[À CONFIRMER]</span>');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq
+    .filter((f) => !f.a.includes('[À CONFIRMER]'))
+    .map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Base
+  title="Questions fréquentes : pièces et épaves | Garage Universel"
+  description="Garantie, échange, paiement, enlèvement d’épave, certificat de destruction, horaires : les réponses de la casse Garage Universel Auto Pièces à Groslay."
+  extraSchema={[schema]}
+>
+  <PageHead plate="C1 questions" title="Questions fréquentes">
+    <p>
+      Pas trouvé votre réponse ? Appelez le <a class="link mono" href={site.phoneHref}>{site.phone}</a>, du dimanche au vendredi, 9 h–18 h.
+    </p>
+  </PageHead>
+  <div class="wrap py-12">
+    <div class="max-w-[52rem] divide-y-2 divide-steel/30 border-y-2 border-steel/30">
+      {
+        faq.map((f) => (
+          <section class="py-6">
+            <h2 class="text-xl sm:text-2xl">{f.q}</h2>
+            <p class="mt-2 max-w-[68ch]" set:html={tbcHtml(f.a)} />
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Base>

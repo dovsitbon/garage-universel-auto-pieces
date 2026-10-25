@@ -1,0 +1,8 @@
+---
+interface Props { class?: string; light?: boolean }
+const { class: cls = '', light = false } = Astro.props;
+---
+<p data-status class={`inline-flex items-center gap-2 ${cls}`} aria-live="polite">
+  <span class="status-dot" aria-hidden="true"></span>
+  <span data-status-text class={light ? '' : ''}>Lun–ven et dim 9 h–18 h, fermé le samedi</span>
+</p>

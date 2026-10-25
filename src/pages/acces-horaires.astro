@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import HoursTable from '../components/HoursTable.astro';
+import Status from '../components/Status.astro';
+import MapFacade from '../components/MapFacade.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Accès et horaires, 8 route de Calais, Groslay | Garage Universel"
+  description="Casse automobile au 8 route de Calais (RN1) à Groslay, 95410. Ouvert du dimanche au vendredi de 9 h à 18 h, fermé le samedi. Entrée et parking accessibles."
+>
+  <PageHead plate="B2 accès" title="Accès et horaires">
+    <p>
+      {site.street}, {site.postalCode} {site.city}, sur la route de Calais (RN1). Pour les clients de Groslay, Montmorency, Sarcelles, Saint-Brice-sous-Forêt, Deuil-la-Barre, Montmagny, Domont et Ézanville.
+    </p>
+  </PageHead>
+  <div class="wrap grid gap-10 py-12 lg:grid-cols-[22rem_1fr]">
+    <section aria-labelledby="h">
+      <h2 id="h" class="text-2xl">Horaires</h2>
+      <Status class="mt-3 font-semibold" />
+      <HoursTable class="mt-4" />
+      <p class="mt-4">Ouvert le dimanche, fermé le samedi. Jours fériés <span class="tbc">[À CONFIRMER]</span></p>
+      <h2 class="mt-10 text-2xl">Sur place</h2>
+      <ul class="mt-3 space-y-2">
+        <li>{site.accessibility}.</li>
+        <li>Paiement : {site.payments.toLowerCase()}.</li>
+        <li>Téléphone : <a class="link mono" href={site.phoneHref}>{site.phone}</a></li>
+      </ul>
+      <a class="btn btn-green mt-6" href={site.mapsUrl} target="_blank" rel="noopener">Itinéraire Google Maps</a>
+    </section>
+    <section aria-labelledby="c">
+      <h2 id="c" class="text-2xl">Plan</h2>
+      <div class="mt-4"><MapFacade /></div>
+    </section>
+  </div>
+</Base>

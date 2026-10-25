@@ -1,0 +1,13 @@
+---
+import Plate from './Plate.astro';
+interface Props { plate: string; title: string; tone?: 'kraft' | 'green' | 'paper' }
+const { plate, title, tone = 'paper' } = Astro.props;
+const bg = tone === 'kraft' ? 'bg-kraft text-green-deep' : tone === 'green' ? 'on-dark bg-green text-white' : 'bg-paper-2';
+---
+<div class={`${bg} border-b-2 border-steel`}>
+  <div class="wrap py-10 md:py-14">
+    <Plate ref={plate} />
+    <h1 class="mt-5 max-w-[24ch] text-[2rem] sm:text-5xl">{title}</h1>
+    <div class="mt-4 max-w-[62ch] text-[1.08rem]"><slot /></div>
+  </div>
+</div>

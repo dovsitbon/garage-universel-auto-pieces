@@ -1,0 +1,18 @@
+# Garage Universel Auto Pièces
+
+> Casse automobile et centre VHU agréé par la préfecture à Groslay (Val-d'Oise). Vente de pièces auto d'occasion, enlèvement d'épave, rachat de véhicule avec certificat de destruction.
+
+- Adresse : 8 route de Calais, 95410 Groslay (route de Calais, RN1)
+- Téléphone : 01 39 83 10 56
+- Horaires : dimanche au vendredi 9 h–18 h ; fermé le samedi
+- SIREN : 812 263 341
+- Paiement : carte bancaire, sans contact
+- Accessibilité : entrée et parking accessibles en fauteuil roulant
+- Communes proches : Montmorency, Saint-Brice-sous-Forêt, Sarcelles, Deuil-la-Barre, Montmagny, Domont, Ézanville
+
+## Pages
+
+- [Chercher une pièce d'occasion](https://garage-universel-auto-pieces.vercel.app/pieces-auto-occasion/) : formulaire de recherche de pièce
+- [Enlèvement d'épave et rachat](https://garage-universel-auto-pieces.vercel.app/enlevement-epave-vhu/) : étapes, documents, certificat de destruction
+- [Accès et horaires](https://garage-universel-auto-pieces.vercel.app/acces-horaires/)
+- [Questions fréquentes](https://garage-universel-auto-pieces.vercel.app/faq/)

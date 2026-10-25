@@ -1,0 +1,17 @@
+---
+import Field from './Field.astro';
+import FormFooter from './FormFooter.astro';
+const p = 'piece';
+---
+<form data-lead data-success="Demande de pièce envoyée. On vérifie le stock et on vous rappelle." class="grid gap-x-5 gap-y-5 sm:grid-cols-2" novalidate>
+  <input type="hidden" name="subject" value="Demande de pièce : site Garage Universel" />
+  <input type="hidden" name="type_demande" value="Pièce d'occasion" />
+  <Field id={`${p}-marque`} name="marque" label="Marque" required autocomplete="off" />
+  <Field id={`${p}-modele`} name="modele" label="Modèle" required hint="Ex. Clio III, 308 SW, Golf 6" />
+  <Field id={`${p}-annee`} name="annee" label="Année" inputmode="numeric" pattern="[0-9]{4}" hint="Première mise en circulation (carte grise, case B)" />
+  <Field id={`${p}-moteur`} name="motorisation" label="Motorisation" hint="Ex. 1.5 dCi 90, 1.6 HDi (carte grise, case P)" />
+  <Field id={`${p}-piece`} name="piece" label="Pièce recherchée" required class="sm:col-span-2" hint="Côté conducteur ou passager, couleur, référence si vous l'avez" textarea />
+  <Field id={`${p}-tel`} name="telephone" label="Téléphone" type="tel" required autocomplete="tel" inputmode="tel" pattern="(\+33|0)[\s.\-]?[1-9]([\s.\-]?[0-9]{2}){4}" />
+  <Field id={`${p}-nom`} name="nom" label="Nom ou garage" autocomplete="name" />
+  <FormFooter id={p} submit="Envoyer ma demande de pièce" />
+</form>

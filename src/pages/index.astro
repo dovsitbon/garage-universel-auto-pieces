@@ -1,0 +1,265 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+import Status from '../components/Status.astro';
+import Reuse from '../components/Reuse.astro';
+import HoursTable from '../components/HoursTable.astro';
+import MapFacade from '../components/MapFacade.astro';
+import { site, reviews, faq } from '../data/site';
+
+const title = 'Garage Universel : pièces auto d’occasion et VHU à Groslay';
+const description =
+  'Casse auto route de Calais à Groslay : pièces d’occasion, enlèvement d’épave, rachat avec certificat de destruction. Dimanche au vendredi, 9 h–18 h.';
+---
+
+<Base title={title} description={description}>
+  <!-- Les deux portes -->
+  <section class="wrap pt-6 pb-10 md:pt-12 md:pb-14" aria-labelledby="h1">
+    <p class="mono text-sm text-steel">{site.street}, {site.city}, sur la RN1</p>
+    <h1 id="h1" class="mt-2 max-w-[22ch] text-[2.1rem] sm:text-5xl lg:text-[3.6rem]">
+      Pièces auto d'occasion et centre VHU agréé à Groslay
+    </h1>
+
+    <div class="doors mt-6 grid md:mt-10 md:grid-cols-2">
+      <article class="door door--kraft">
+        <Plate ref="Comptoir" label="pièces" />
+        <h2 class="mt-5 text-[1.7rem] sm:text-4xl">Je cherche une pièce</h2>
+        <p class="mt-3 max-w-[42ch]">
+          Rétroviseur, phare, démarreur, portière, boîte… Donnez-nous la voiture et la pièce, on regarde dans le stock et on vous rappelle.
+        </p>
+        <p class="mt-4 hidden text-[0.95rem] sm:block">
+          <span class="font-semibold">À avoir sous la main :</span> marque, modèle, année et motorisation (carte grise, cases B et P).
+        </p>
+        <div class="mt-auto flex flex-wrap gap-3 pt-6 md:pt-8">
+          <a href="/pieces-auto-occasion/" class="btn btn-ink">Demander une pièce</a>
+          <a href={site.phoneHref} class="btn btn-line mono hidden md:inline-flex">{site.phone}</a>
+        </div>
+      </article>
+
+      <article class="door door--green on-dark">
+        <Plate ref="Entrée" label="véhicules" />
+        <h2 class="mt-5 text-[1.7rem] sm:text-4xl">Je me débarrasse de mon véhicule</h2>
+        <p class="mt-3 max-w-[42ch]">
+          Épave, voiture accidentée, en panne ou dont vous ne voulez plus : on la reprend, et vous repartez avec le certificat de destruction d'un centre VHU agréé.
+        </p>
+        <p class="mt-4 hidden text-[0.95rem] sm:block">
+          <span class="font-semibold">À avoir sous la main :</span> carte grise et pièce d'identité. Liste complète des documents <span class="tbc">[À CONFIRMER]</span>
+        </p>
+        <div class="mt-auto flex flex-wrap gap-3 pt-6 md:pt-8">
+          <a href="/enlevement-epave-vhu/" class="btn btn-paper">Décrire mon véhicule</a>
+          <a href={site.phoneHref} class="btn btn-line mono hidden md:inline-flex">{site.phone}</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-5 flex flex-col gap-2 border-l-4 border-green pl-4 sm:flex-row sm:items-center sm:gap-6">
+      <Status class="font-semibold" />
+      <p class="text-steel">Ouvert le dimanche, fermé le samedi.</p>
+    </div>
+  </section>
+
+  <!-- Le rayonnage : sections en casiers -->
+  <section class="wrap pb-16" aria-label="Le magasin en casiers">
+    <div class="cabinet">
+      <section class="drawer drawer-reveal lg:col-span-7" aria-labelledby="a1">
+        <Plate ref="A1" label="réemploi" />
+        <h2 id="a1" class="mt-5 text-2xl sm:text-3xl">Pourquoi une pièce d'occasion</h2>
+        <dl class="mt-5 grid gap-4 sm:grid-cols-3 sm:gap-6">
+          <div>
+            <dt class="font-semibold">Le prix</dt>
+            <dd class="mt-1 text-[0.98rem]">Une pièce d'origine déjà produite, vendue au prix de l'occasion. Tarifs au comptoir <span class="tbc">[À CONFIRMER]</span></dd>
+          </div>
+          <div>
+            <dt class="font-semibold">La rapidité</dt>
+            <dd class="mt-1 text-[0.98rem]">Si la pièce est sur place, vous repartez avec. Pas de délai de commande.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Le réemploi</dt>
+            <dd class="mt-1 text-[0.98rem]">La voiture démontée sert encore : ses pièces roulent sur d'autres voitures.</dd>
+          </div>
+        </dl>
+        <Reuse />
+      </section>
+
+      <section class="drawer drawer--kraft drawer-reveal lg:col-span-5" aria-labelledby="a2">
+        <Plate ref="A2" label="agrément" />
+        <h2 id="a2" class="mt-5 text-2xl sm:text-3xl">Centre VHU agréé par la préfecture</h2>
+        <p class="mt-3 text-[0.98rem]">
+          Un véhicule hors d'usage (VHU) ne peut être détruit que par un centre agréé. C'est lui qui remet le certificat de destruction au propriétaire.
+        </p>
+        <dl class="specs mt-5">
+          <div><dt>N° d'agrément</dt><dd><span class="tbc">{site.vhuAgrement}</span></dd></div>
+          <div><dt>SIREN</dt><dd class="mono">{site.siren}</dd></div>
+          <div><dt>Adresse</dt><dd>{site.street}, {site.postalCode} {site.city}</dd></div>
+          <div><dt>Paiement</dt><dd>{site.payments}</dd></div>
+          <div><dt>Accès</dt><dd>{site.accessibility}</dd></div>
+        </dl>
+      </section>
+
+      <section class="drawer drawer-reveal lg:col-span-5" aria-labelledby="b1">
+        <Plate ref="B1" label="avis" />
+        <h2 id="b1" class="mt-5 text-2xl sm:text-3xl">Ce qu'en disent les clients</h2>
+        <p class="mt-2 text-steel"><span class="mono text-ink">{site.google.rating}/5</span> sur Google, environ {site.google.count} avis</p>
+        <ul class="mt-5 space-y-4">
+          {reviews.map((r) => (
+            <li class="border-l-4 border-kraft pl-4">
+              <blockquote><p>« {r} »</p></blockquote>
+              <p class="mono mt-1 text-[0.8rem] text-steel">Avis Google</p>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 text-[0.95rem]">
+          Le téléphone sonne beaucoup. Si personne ne décroche, laissez votre demande par{' '}
+          <a class="link" href="/pieces-auto-occasion/">le formulaire pièce</a>{' '}ou{' '}
+          <a class="link" href="/enlevement-epave-vhu/">le formulaire véhicule</a> : on rappelle.
+        </p>
+      </section>
+
+      <section class="drawer drawer--green on-dark drawer-reveal lg:col-span-7" aria-labelledby="b2">
+        <Plate ref="B2" label="accès" />
+        <h2 id="b2" class="mt-5 text-2xl sm:text-3xl">Horaires et accès</h2>
+        <div class="mt-5 grid gap-8 md:grid-cols-[1fr_1.3fr]">
+          <div>
+            <HoursTable />
+            <Status class="mt-4 font-semibold" />
+            <p class="mt-4 text-[0.98rem]">
+              {site.street}, {site.postalCode} {site.city}. Sur la route de Calais (RN1), côté Groslay.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a class="btn btn-paper" href={site.mapsUrl} target="_blank" rel="noopener">Itinéraire</a>
+              <a class="btn btn-line" href="/acces-horaires/">Accès détaillé</a>
+            </div>
+          </div>
+          <div class="text-ink">
+            <MapFacade />
+          </div>
+        </div>
+      </section>
+
+      <section class="drawer drawer-reveal lg:col-span-12" aria-labelledby="c1">
+        <Plate ref="C1" label="questions" />
+        <div class="mt-5 grid gap-6 lg:grid-cols-[18rem_1fr]">
+          <div>
+            <h2 id="c1" class="text-2xl sm:text-3xl">Questions qu'on nous pose</h2>
+            <a class="link mt-3 inline-flex min-h-[44px] items-center" href="/faq/">Toutes les questions</a>
+          </div>
+          <div class="divide-y-2 divide-steel/30 border-y-2 border-steel/30">
+            {faq.slice(0, 4).map((f) => (
+              <details class="group">
+                <summary class="flex min-h-[52px] cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <span class="mono text-green transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="pb-4 max-w-[68ch]" set:html={f.a.replace('[À CONFIRMER]', '<span class="tbc">[À CONFIRMER]</span>')} />
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="mt-8 max-w-[70ch] text-[0.95rem] text-steel">
+      Clients de Groslay et des communes voisines : Montmorency, Saint-Brice-sous-Forêt, Sarcelles, Deuil-la-Barre, Montmagny, Domont, Ézanville.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .door {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.25rem 2.25rem;
+    border: 3px solid var(--color-steel);
+  }
+  .door + .door {
+    border-top-width: 0;
+  }
+  .door--kraft {
+    background: var(--color-kraft);
+    color: var(--color-green-deep);
+  }
+  .door--green {
+    background: var(--color-green);
+    color: var(--color-white);
+  }
+  .door::after {
+    /* poignée */
+    content: '';
+    position: absolute;
+    background: var(--color-safety);
+    left: 50%;
+    bottom: 0.9rem;
+    width: 5rem;
+    height: 0.55rem;
+    transform: translateX(-50%);
+  }
+  .door--kraft .btn-line {
+    color: var(--color-green-deep);
+  }
+  .door--kraft .btn-line:hover {
+    background: rgba(18, 53, 34, 0.08);
+  }
+  @media (min-width: 768px) {
+    .door {
+      padding: 2.25rem 2.5rem 2.5rem;
+      min-height: 30rem;
+    }
+    .door + .door {
+      border-top-width: 3px;
+      border-left-width: 0;
+    }
+    .door::after {
+      left: auto;
+      bottom: auto;
+      top: 50%;
+      width: 0.55rem;
+      height: 6rem;
+      transform: translateY(-50%);
+    }
+    .door--kraft {
+      padding-right: 3.5rem;
+    }
+    .door--green {
+      padding-left: 3.5rem;
+    }
+    .door--kraft::after {
+      right: 1.25rem;
+    }
+    .door--green::after {
+      left: 1.25rem;
+    }
+  }
+
+  .cabinet {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    background: var(--color-steel);
+  }
+  @media (min-width: 1024px) {
+    .cabinet {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+  .cabinet > .drawer {
+    border: 0;
+  }
+
+  .specs > div {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid rgba(18, 53, 34, 0.3);
+  }
+  .specs dt {
+    font-weight: 600;
+  }
+  @media (max-width: 380px) {
+    .specs > div {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
+    }
+  }
+</style>

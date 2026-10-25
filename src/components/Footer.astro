@@ -1,0 +1,36 @@
+---
+import { site } from '../data/site';
+import HoursTable from './HoursTable.astro';
+const year = new Date().getFullYear();
+---
+<footer class="on-dark bg-green-deep text-paper pb-[64px] md:pb-0">
+  <div class="wrap grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_1fr]">
+    <div>
+      <p class="text-xl font-semibold">{site.name}</p>
+      <p class="mt-1 text-paper/85">Casse automobile, pièces d'occasion et centre VHU agréé</p>
+      <address class="mt-5 not-italic leading-relaxed">
+        {site.street}<br />{site.postalCode} {site.city}<br />
+        <a class="mono underline underline-offset-2 inline-flex min-h-[44px] items-center" href={site.phoneHref}>{site.phone}</a>
+      </address>
+      <p class="mono mt-2 text-sm text-paper/85">SIREN {site.siren}</p>
+    </div>
+    <div>
+      <p class="font-semibold">Horaires</p>
+      <HoursTable class="mt-2 text-sm" />
+    </div>
+    <div>
+      <p class="font-semibold">Pages</p>
+      <ul class="mt-2">
+        <li><a class="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline" href="/pieces-auto-occasion/">Chercher une pièce d'occasion</a></li>
+        <li><a class="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline" href="/enlevement-epave-vhu/">Enlèvement d'épave et rachat</a></li>
+        <li><a class="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline" href="/acces-horaires/">Accès et horaires</a></li>
+        <li><a class="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline" href="/faq/">Questions fréquentes</a></li>
+        <li><a class="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline" href="/mentions-legales/">Mentions légales</a></li>
+        <li><a class="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline" href="/confidentialite/">Confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-paper/20">
+    <p class="wrap py-4 text-sm text-paper/80">© {year} {site.name}, {site.city}. Pièces auto d'occasion pour Groslay, Montmorency, Saint-Brice-sous-Forêt, Sarcelles, Deuil-la-Barre, Montmagny, Domont et Ézanville.</p>
+  </div>
+</footer>

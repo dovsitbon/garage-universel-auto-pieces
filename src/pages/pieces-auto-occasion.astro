@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import PartForm from '../components/PartForm.astro';
+import Aside from '../components/Aside.astro';
+import { site } from '../data/site';
+---
+<Base
+  title="Pièce auto d’occasion à Groslay : demande en ligne"
+  description="Cherchez une pièce auto d’occasion à la casse de Groslay (route de Calais) : décrivez votre voiture et la pièce, on vérifie le stock et on vous rappelle."
+>
+  <PageHead plate="Comptoir pièces" title="Une pièce d'occasion pour votre voiture" tone="kraft">
+    <p>Remplissez la fiche ci-dessous : on cherche la pièce dans le stock de la casse et on vous rappelle avec la réponse. Pour les garagistes comme pour les particuliers.</p>
+  </PageHead>
+
+  <div class="wrap grid gap-10 py-10 md:py-14 lg:grid-cols-[1fr_20rem]">
+    <section aria-labelledby="fiche">
+      <h2 id="fiche" class="text-2xl sm:text-3xl">Fiche de recherche</h2>
+      <p class="mt-2 mb-6 text-steel">Les champs sans mention « facultatif » sont nécessaires. Plus la motorisation est précise, moins on se trompe de pièce.</p>
+      <PartForm />
+    </section>
+    <Aside />
+  </div>
+
+  <section class="border-t-2 border-steel bg-paper-2" aria-labelledby="comment">
+    <div class="wrap grid gap-8 py-12 md:grid-cols-[18rem_1fr]">
+      <h2 id="comment" class="text-2xl">Comment ça se passe</h2>
+      <ol class="steps grid gap-6 sm:grid-cols-3">
+        <li><span class="mono step-n">1</span><p class="font-semibold">Vous envoyez la fiche</p><p class="mt-1 text-[0.98rem]">Ou vous appelez le <a class="link mono" href={site.phoneHref}>{site.phone}</a>.</p></li>
+        <li><span class="mono step-n">2</span><p class="font-semibold">On vérifie le stock</p><p class="mt-1 text-[0.98rem]">Pièce compatible avec votre modèle et votre motorisation.</p></li>
+        <li><span class="mono step-n">3</span><p class="font-semibold">Vous passez la chercher</p><p class="mt-1 text-[0.98rem]">Au {site.street}, du dimanche au vendredi, 9 h–18 h. Envoi postal <span class="tbc">[À CONFIRMER]</span></p></li>
+      </ol>
+    </div>
+  </section>
+</Base>
+<script>
+  import { initForms } from '../scripts/forms';
+  initForms();
+</script>

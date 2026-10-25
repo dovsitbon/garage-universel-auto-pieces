@@ -1,0 +1,17 @@
+---
+import { hours } from '../data/site';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+const fmt = (s: string) => { const [h, m] = s.split(':').map(Number); return m ? `${h} h ${m}` : `${h} h`; };
+---
+<table class={`w-full border-collapse ${cls}`}>
+  <caption class="sr-only">Horaires d'ouverture</caption>
+  <tbody>
+    {hours.map((h) => (
+      <tr class="border-b border-current/25" data-day={h.day}>
+        <th scope="row" class="py-2 pr-4 text-left font-semibold">{h.label}</th>
+        <td class="mono py-2 text-right">{h.open && h.close ? `${fmt(h.open)} – ${fmt(h.close)}` : 'Fermé'}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
